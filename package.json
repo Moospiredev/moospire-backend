@@ -10,7 +10,7 @@
     "start": "npm run build && NODE_ENV=production node dist/server.js",
     "build:tsc": "tsc",
     "build:alias": "tsc-alias",
-    "build": "NODE_OPTIONS='--max-old-space-size=512' npm run build:tsc && npm run build:alias",
+    "build": "npm run build:tsc && npm run build:alias",
     "serve": "pm2-runtime dist/server.js",
     "docker:build": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --no-cache",
     "docker:serve": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",

@@ -30,6 +30,7 @@ const cookieOptions = {
   sameSite: "lax",
   maxAge: safeMilliseconds(process.env.TOKEN_LIFE, fallbackTokenLife),
 };
+/* mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@testcluster.urrgt.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority  */  
 
 /* Storing all the environment variables in one place */
 const envConfig = {
@@ -62,8 +63,7 @@ const envConfig = {
   EMAIL_DOMAIN: process.env.EMAIL_DOMAIN,
 
   FILE_SIZE_BASE: 5,
-
-  MONGODB_CONNECTION_STRING: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@testcluster.urrgt.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
+  MONGODB_CONNECTION_STRING: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.jd9mx9w.mongodb.net/${process.env.MONGODB_DATABASE}?appName=Cluster0`,
 
   MORGAN_OUTPUT_FORMAT:
     process.env.APP_ENV === "development"
@@ -75,7 +75,8 @@ const envConfig = {
   RATE_LIMIT_REQUEST: 1,
   RATE_LIMIT_REQUEST_PER_SECOND: 1000,
 
-  REDIS_HOST: process.env.REDIS_HOST || "redis",
+  REDIS_URL: process.env.REDIS_URL || "redis://localhost:6379",
+  REDIS_HOST: process.env.REDIS_HOST || "localhost",
   REDIS_PORT: process.env.REDIS_PORT || 6379,
 
   SALT_ROUND: process.env.SALT_ROUND || "10",

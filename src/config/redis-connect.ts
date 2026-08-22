@@ -1,12 +1,11 @@
 import { createClient, RedisClientType } from "redis";
 import { env, appLogger } from "@/config/index.js";
 
+const redisUrl = process.env.REDIS_URL || `redis://${env.REDIS_HOST}:${env.REDIS_PORT}`;
+
 // Create a typed Redis client
 const redisClient: RedisClientType = createClient({
-  socket: {
-    host: env.REDIS_HOST as string,
-    port: env.REDIS_PORT as number,
-  },
+  url: redisUrl,
 });
 
 // Function to connect to Redis database

@@ -38,7 +38,7 @@ const envConfig = {
   API_VERSION: process.env.API_VERSION || "/api/v1",
   APP_CLIENT_BASE_DOMAIN: process.env.APP_CLIENT_BASE_DOMAIN || "https://example.com",
   APP_ENV: process.env.APP_ENV || "development",
-  APP_PORT: process.env.APP_PORT || "3000",
+  APP_PORT: process.env.PORT || "3000",
   APP_SECRET: process.env.APP_SECRET || "development-secret-key",
 
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,

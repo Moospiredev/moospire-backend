@@ -2,7 +2,7 @@
 // API_VERSION=/api/v1
 // APP_CLIENT_BASE_DOMAIN=https://moospire-app.vercel.app
 // APP_ENV=production
-// APP_PORT=3000
+// PORT=3000
 // APP_SECRET=secret
 
 // CLOUDINARY_CLOUD_NAME=moospire

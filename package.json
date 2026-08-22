@@ -7,7 +7,7 @@
   "scripts": {
     "_": "nodemon --watch src --ext ts --env-file .env --exec tsx -r tsconfig-paths/register src/server.ts",
     "dev": "nodemon --watch src --ext ts --exec tsx -r tsconfig-paths/register src/server.ts",
-    "start": "npm run build && NODE_ENV=production node dist/server.js",
+  "start": "cross-env NODE_ENV=production node dist/server.js",
     "build:tsc": "npx tsc --skipLibCheck --incremental false",
     "build:alias": "npx tsc-alias",
     "build": "npm run build:tsc && npm run build:alias",

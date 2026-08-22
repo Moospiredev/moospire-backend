@@ -10,22 +10,35 @@ dotenv.config({
   path: path.resolve(__dirname, `../../.env`),
 });
 
+const fallbackTokenLife = "1h";
+const fallbackOtpLife = "10m";
+
+const safeMilliseconds = (value: string | undefined, fallback: string) => {
+  const source = value || fallback;
+
+  try {
+    return convertToMilliseconds(source);
+  } catch {
+    return convertToMilliseconds(fallback);
+  }
+};
+
 const cookieOptions = {
   httpOnly: true,
   path: "/",
   secure: false,
   sameSite: "lax",
-  maxAge: convertToMilliseconds(process.env.TOKEN_LIFE as string),
+  maxAge: safeMilliseconds(process.env.TOKEN_LIFE, fallbackTokenLife),
 };
 
 /* Storing all the environment variables in one place */
 const envConfig = {
   ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
-  API_VERSION: process.env.API_VERSION,
-  APP_CLIENT_BASE_DOMAIN: process.env.APP_CLIENT_BASE_DOMAIN,
-  APP_ENV: process.env.APP_ENV,
-  APP_PORT: process.env.APP_PORT,
-  APP_SECRET: process.env.APP_SECRET,
+  API_VERSION: process.env.API_VERSION || "/api/v1",
+  APP_CLIENT_BASE_DOMAIN: process.env.APP_CLIENT_BASE_DOMAIN || "https://example.com",
+  APP_ENV: process.env.APP_ENV || "development",
+  APP_PORT: process.env.APP_PORT || "3000",
+  APP_SECRET: process.env.APP_SECRET || "development-secret-key",
 
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
@@ -65,10 +78,10 @@ const envConfig = {
   REDIS_HOST: process.env.REDIS_HOST || "redis",
   REDIS_PORT: process.env.REDIS_PORT || 6379,
 
-  SALT_ROUND: process.env.SALT_ROUND,
-  TOKEN_LIFE: process.env.TOKEN_LIFE,
-  OTP_TIME_TO_LIFE: process.env.OTP_TIME_TO_LIFE,
-  SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL,
+  SALT_ROUND: process.env.SALT_ROUND || "10",
+  TOKEN_LIFE: process.env.TOKEN_LIFE || fallbackTokenLife,
+  OTP_TIME_TO_LIFE: process.env.OTP_TIME_TO_LIFE || fallbackOtpLife,
+  SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL || "superadmin@moospire.com",
 
   // NON ENV VARIABLES
   DOMAIN_URL:
